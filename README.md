@@ -19,7 +19,7 @@ serialized('bla', function () {});
 serialized('blabla', function () {});
 ```
 
-You can also control set the concurrency level to more than one:
+You can also set the concurrency level to more than one:
 
 ```javascript
 var serialized = serializeAsync(cannotRunInParallel, {maxConcurrency: 4});
