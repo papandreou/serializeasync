@@ -6,8 +6,8 @@ Make sure that an async function is not run multiple times at once.
 ```javascript
 var serializeAsync = require('serializeasync');
 
-function cannotRunInParallel(cb) {
-    require('fs').writeFile('/foo/bar.txt', 'utf-8', cb);
+function cannotRunInParallel(text, cb) {
+    require('fs').writeFile('/foo/bar.txt', text, 'utf-8', cb);
 }
 
 var serialized = serializeAsync(cannotRunInParallel);
@@ -15,8 +15,8 @@ var serialized = serializeAsync(cannotRunInParallel);
 // Now it's safe to do this (the second invocation will be queued up
 // until the first has completed):
 
-serialized(function () {});
-serialized(function () {});
+serialized('bla', function () {});
+serialized('blabla', function () {});
 ```
 
 You can also control set the concurrency level to more than one:
